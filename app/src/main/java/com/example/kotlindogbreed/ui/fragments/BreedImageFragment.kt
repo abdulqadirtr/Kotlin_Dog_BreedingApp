@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import com.example.kotlindogbreed.breedViewModel.BreedImageViewModel
 import com.example.kotlindogbreed.databinding.BreedImageFragmentBinding
-import com.pbasualdo.dogs.ui.fragments.BreedImageFragmentArgs
+import com.example.kotlindogbreed.ui.fragments.BreedImageFragmentArgs
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.breed_image_fragment.*
