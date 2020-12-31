@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Kotlin Dog Breed</string>
+    <string name="action_settings">Settings</string>
+</resources>
