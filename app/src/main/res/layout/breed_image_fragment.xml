@@ -1,37 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
         <import type="android.view.View" />
         <variable
             name="viewmodel"
             type="com.example.kotlindogbreed.breedViewModel.BreedImageViewModel" />
     </data>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.fragments.BreedImageFragment">
-
-    <ImageView
-        android:id="@+id/breed_img"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerInParent="true" />
+        tools:context=".ui.fragments.BreedImageFragment">
 
-    <ProgressBar
-        style="?android:attr/progressBarStyleSmall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:visibility="@{viewmodel.dataLoading ? View.VISIBLE : View.GONE}" />
+        <ImageView
+            android:id="@+id/breed_img"
+            android:layout_marginTop="80dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Nothing to display"
-        android:textSize="18sp"
-        android:visibility="@{viewmodel.empty ? View.VISIBLE : View.GONE}" />
+        <ProgressBar
+            style="?android:attr/progressBarStyleSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="@{viewmodel.dataLoading ? View.VISIBLE : View.GONE}" />
 
-</RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Nothing to display"
+            android:textSize="18sp"
+            android:visibility="@{viewmodel.empty ? View.VISIBLE : View.GONE}" />
+
+        <TextView
+            android:id="@+id/breedName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="323dp"
+            android:layout_alignTop="@+id/breed_img"
+            android:gravity="center"
+            android:text="TextView"
+            android:textSize="@dimen/large" />
+
+        <Button
+            android:id="@+id/btnFvrtt"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignBottom="@+id/breed_img"
+           android:layout_centerHorizontal="true"
+            android:background="@drawable/ic_baseline_favorite_border_24" />
+
+    </RelativeLayout>
 </layout>

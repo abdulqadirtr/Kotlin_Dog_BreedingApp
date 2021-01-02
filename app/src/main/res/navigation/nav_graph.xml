@@ -7,11 +7,14 @@
     <fragment
         android:id="@+id/breedListFragment"
         android:name="com.example.kotlindogbreed.ui.fragments.BreedListFragment"
-        android:label="Breeds"
+        android:label="Redline App"
         tools:layout="@layout/breed_list_fragment">
         <action
             android:id="@+id/action_breedListFragment_to_breedImageFragment"
             app:destination="@id/breedImageFragment" />
+        <action
+            android:id="@+id/action_breedListFragment_to_breedOfflineFragment"
+            app:destination="@id/offlineFragment" />
     </fragment>
     <fragment
         android:id="@+id/breedImageFragment"
@@ -24,4 +27,16 @@
             android:name="subBreedName"
             app:argType="string" />
     </fragment>
+
+
+
+    <fragment
+        android:id="@+id/offlineFragment"
+        android:name="com.example.kotlindogbreed.ui.fragments.OfflineFragment"
+        android:label="Breed Photo">
+    </fragment>
+
+
+
+
 </navigation>

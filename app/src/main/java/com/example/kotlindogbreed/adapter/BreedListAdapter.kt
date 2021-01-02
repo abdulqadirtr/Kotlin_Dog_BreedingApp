@@ -1,5 +1,6 @@
 package com.example.kotlindogbreed.adapter
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,12 +13,12 @@ import com.example.kotlindogbreed.breedViewModel.BreedsViewModel
 import com.example.kotlindogbreed.databinding.BreedListItemBinding
 import com.example.kotlindogbreed.room.Product
 import com.example.kotlindogbreed.ui.MainActivity
-import com.example.kotlindogbreed.BR
+import androidx.databinding.library.baseAdapters.BR;
 
+class BreedListAdapter(private val breedViewModel: BreedsViewModel) :
+    RecyclerView.Adapter<BreedListViewHolder>() {
 
-class BreedListAdapter(private val breedViewModel: BreedsViewModel):RecyclerView.Adapter<BreedListViewHolder>(){
-
-    var breedList: MutableList<Pair<String,String>> = mutableListOf()
+    var breedList: MutableList<Pair<String, String>> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BreedListViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -31,16 +32,16 @@ class BreedListAdapter(private val breedViewModel: BreedsViewModel):RecyclerView
     override fun getItemCount() = breedList.size
 
     override fun onBindViewHolder(holder: BreedListViewHolder, position: Int) {
-        holder.setup(breedList[position])
+        holder.setup(breedList[position], position)
     }
 
-    fun updateBreedList(list: Map<String,List<String>>) {
-        for(breed in list){
-            if(breed.value.isEmpty())
-                breedList.add(Pair(breed.key,""))
+    fun updateBreedList(list: Map<String, List<String>>) {
+        for (breed in list) {
+            if (breed.value.isEmpty())
+                breedList.add(Pair(breed.key, ""))
             else
-                for (sub_breed in breed.value){
-                    breedList.add(Pair(breed.key,sub_breed))
+                for (sub_breed in breed.value) {
+                    breedList.add(Pair(breed.key, sub_breed))
                 }
         }
         notifyDataSetChanged()
@@ -49,25 +50,20 @@ class BreedListAdapter(private val breedViewModel: BreedsViewModel):RecyclerView
 }
 
 
-class BreedListViewHolder constructor(private val dataBinding: ViewDataBinding, private val breedsViewModel: BreedsViewModel)
-    :RecyclerView.ViewHolder(dataBinding.root) {
+class BreedListViewHolder constructor(
+    private val dataBinding: ViewDataBinding,
+    private val breedsViewModel: BreedsViewModel
+) : RecyclerView.ViewHolder(dataBinding.root) {
 
-    fun setup(itemData: Pair<String, String> ) {
-        var description = if(itemData.second.isEmpty()) itemData.first else itemData.first+ " - "+ itemData.second
-        dataBinding.setVariable(BR.itemBreed,description)
+    fun setup(itemData: Pair<String, String>, position: Int) {
+        var description =
+            if (itemData.second.isEmpty()) itemData.first else itemData.first + " - " + itemData.second
+        dataBinding.setVariable(BR.itemBreed, description)
         dataBinding.executePendingBindings()
-
-
-
         itemView.setOnClickListener(View.OnClickListener {
-
-            val product = Product()
-            product.fName = itemData.first
-            product.lName = itemData.second
-
-            MainActivity.appDatabase!!.productDao().addProduct(product)
             val bundle = bundleOf("breedName" to itemData.first, "subBreedName" to itemData.second)
-            itemView.findNavController().navigate(R.id.action_breedListFragment_to_breedImageFragment, bundle)
+            itemView.findNavController()
+                .navigate(R.id.action_breedListFragment_to_breedImageFragment, bundle)
         })
     }
 }
